@@ -1,14 +1,15 @@
-import { Button } from "@chakra-ui/react";
-import styles from "./page.module.scss";
+import EmblaCarousel from "@/components/Carousel";
+import { EmblaOptionsType } from "embla-carousel";
+import { getMovies } from "@/lib/getMovies";
 
-export default function Home() {
+const OPTIONS: EmblaOptionsType = { loop: true };
+
+export default async function Home() {
+  const movies = await getMovies();
+  console.log(movies);
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Button className={styles.myButton}>Hello</Button>
-        <Button>Hello</Button>
-        <Button>Hello</Button>
-      </main>
+    <div className="p-6">
+      <EmblaCarousel slides={movies} options={OPTIONS} />
     </div>
   );
 }
