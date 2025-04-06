@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithRef, useCallback, useEffect, useState } from "react";
 import { EmblaCarouselType } from "embla-carousel";
+import { Button } from "@chakra-ui/react";
 
 type UseDotButtonType = {
   selectedIndex: number;
@@ -48,8 +49,8 @@ export const DotButton: React.FC<PropType> = (props) => {
   const { children, ...restProps } = props;
 
   return (
-    <button type="button" {...restProps}>
+    <Button type="button" {...restProps} colorPalette="cyan" variant="subtle">
       {children}
-    </button>
+    </Button>
   );
 };

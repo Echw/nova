@@ -23,7 +23,7 @@ export async function getMovies(): Promise<Movie[]> {
           genre_ids: number[];
           backdrop_path: string;
           runtime: number;
-          overview: string;
+          release_date: string;
         }) => {
           const videos = await getMovieVideos(movie.id);
 
@@ -33,7 +33,7 @@ export async function getMovies(): Promise<Movie[]> {
             genres: movie.genre_ids.map((id) => GenresMap[id]).filter(Boolean),
             move_time: movie.runtime,
             videos: videos,
-            overview: movie.overview,
+            release_date: movie.release_date,
             backdrop: `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}`,
           };
         }

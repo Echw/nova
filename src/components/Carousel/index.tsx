@@ -32,29 +32,25 @@ const EmblaCarousel = ({ slides, options }: EmblaCarouselProps) => {
                 image={movie.backdrop}
                 title={movie.title}
                 genres={movie.genres}
-                overview={movie.overview}
+                date={movie.release_date}
               />
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="embla__controls">
-        <div className="embla__buttons">
+        <div className="embla__controls">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <div className="embla__dots">
+            {scrollSnaps.map((_, index: number) => (
+              <DotButton
+                key={index}
+                onClick={() => onDotButtonClick(index)}
+                className={"embla__dot".concat(
+                  index === selectedIndex ? " embla__dot--selected" : ""
+                )}
+              />
+            ))}
+          </div>
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
-
-        <div className="embla__dots">
-          {scrollSnaps.map((_, index: number) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={"embla__dot".concat(
-                index === selectedIndex ? " embla__dot--selected" : ""
-              )}
-            />
-          ))}
         </div>
       </div>
     </section>

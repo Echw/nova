@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithRef, useCallback, useEffect, useState } from "react";
 import { EmblaCarouselType } from "embla-carousel";
+import { Button } from "@chakra-ui/react";
 
 type UsePrevNextButtonsType = {
   prevBtnDisabled: boolean;
@@ -50,7 +51,13 @@ export const PrevButton: React.FC<PropType> = (props) => {
   const { children, ...restProps } = props;
 
   return (
-    <button className="embla__button embla__button--prev" type="button" {...restProps}>
+    <Button
+      className="embla__button embla__button--prev"
+      type="button"
+      {...restProps}
+      colorPalette="cyan"
+      variant={"ghost"}
+    >
       <svg className="embla__button__svg" viewBox="0 0 532 532">
         <path
           fill="currentColor"
@@ -58,7 +65,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
         />
       </svg>
       {children}
-    </button>
+    </Button>
   );
 };
 
@@ -66,7 +73,13 @@ export const NextButton: React.FC<PropType> = (props) => {
   const { children, ...restProps } = props;
 
   return (
-    <button className="embla__button embla__button--next" type="button" {...restProps}>
+    <Button
+      className="embla__button embla__button--next"
+      type="button"
+      {...restProps}
+      colorPalette="cyan"
+      variant={"ghost"}
+    >
       <svg className="embla__button__svg" viewBox="0 0 532 532">
         <path
           fill="currentColor"
@@ -74,6 +87,6 @@ export const NextButton: React.FC<PropType> = (props) => {
         />
       </svg>
       {children}
-    </button>
+    </Button>
   );
 };

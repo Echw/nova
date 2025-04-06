@@ -9,12 +9,14 @@ h2 {
   }
 }
 
-.subtitle {
+span {
+  font-family: "Work Sans", sans-serif;
   font-size: 1rem;
   @media (max-width: 1200px) {
-    font-size: 0.8rem;
-  }
-  @media (max-width: 510px) {
     font-size: 0.75rem;
   }
+}
+
+button {
+  font-family: "Work Sans", sans-serif;
 }
