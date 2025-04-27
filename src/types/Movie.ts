@@ -7,4 +7,5 @@ export type Movie = {
   move_time: number;
   videos: { id: number; video: string }[];
   date: string;
+  poster: string;
 };

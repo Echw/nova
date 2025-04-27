@@ -14,30 +14,30 @@ export async function getMovies(): Promise<Movie[]> {
   const data = await response.json();
 
   const movies = await Promise.all(
-    data.results
-      .slice(0, 5)
-      .map(
-        async (movie: {
-          id: number;
-          title: string;
-          genre_ids: number[];
-          backdrop_path: string;
-          runtime: number;
-          release_date: string;
-        }) => {
-          const videos = await getMovieVideos(movie.id);
+    data.results.map(
+      async (movie: {
+        id: number;
+        title: string;
+        genre_ids: number[];
+        backdrop_path: string;
+        runtime: number;
+        release_date: string;
+        poster_path: string;
+      }) => {
+        const videos = await getMovieVideos(movie.id);
 
-          return {
-            id: movie.id,
-            title: movie.title,
-            genres: movie.genre_ids.map((id) => GenresMap[id]).filter(Boolean),
-            move_time: movie.runtime,
-            videos: videos,
-            release_date: movie.release_date,
-            backdrop: `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}`,
-          };
-        }
-      )
+        return {
+          id: movie.id,
+          title: movie.title,
+          genres: movie.genre_ids.map((id) => GenresMap[id]).filter(Boolean),
+          move_time: movie.runtime,
+          videos: videos,
+          release_date: movie.release_date,
+          poster: `https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`,
+          backdrop: `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}`,
+        };
+      }
+    )
   );
 
   return movies;
