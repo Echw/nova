@@ -47,7 +47,7 @@ const MenuLinks = ({ isOpen }: MenuLinksProps) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/">Repertuar</MenuItem>
+        <MenuItem to="#repertuar">Repertuar</MenuItem>
         <MenuItem to="/signup" isLast>
           Create Account
         </MenuItem>
