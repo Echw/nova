@@ -1,0 +1,27 @@
+.movie__list__title {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.movie__list__description {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+}
+
+.movie__list__item {
+  img {
+    border: 2px solid transparent;
+    transition: 0.3s;
+  }
+}
+
+.movie__list__item:hover {
+  img {
+    border: 2px solid rgba(8, 144, 178, 0.5);
+  }
+
+  .movie__list__title {
+    color: rgba(8, 144, 178, 1);
+  }
+}
