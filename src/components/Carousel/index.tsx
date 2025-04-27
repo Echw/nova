@@ -2,12 +2,13 @@
 
 import useEmblaCarousel from "embla-carousel-react";
 import { EmblaOptionsType } from "embla-carousel";
-import { DotButton, useDotButton } from "./CarouselDotButton";
-import { PrevButton, NextButton, usePrevNextButtons } from "./CarouselArrowButtons";
+import { useDotButton } from "./CarouselDotButton";
+import { usePrevNextButtons } from "./CarouselArrowButtons";
 import { Movie } from "@/types/Movie";
 
 import "./carousel.scss";
 import { CarouselCard } from "./CarouselCard";
+import { CarouselControls } from "./CarouselControls";
 
 type EmblaCarouselProps = {
   slides: Movie[];
@@ -20,38 +21,31 @@ const EmblaCarousel = ({ slides, options }: EmblaCarouselProps) => {
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } =
     usePrevNextButtons(emblaApi);
 
-  // console.log(slides);
-
   return (
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((movie) => (
-            <div className="embla__slide" key={movie.id}>
+          {slides.slice(0, 5).map((movie) => (
+            <div className="embla__slide header" key={movie.id}>
               <CarouselCard
                 image={movie.backdrop}
                 title={movie.title}
                 genres={movie.genres}
                 date={movie.release_date}
+                id={movie.id}
               />
             </div>
           ))}
         </div>
-        <div className="embla__controls">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <div className="embla__dots">
-            {scrollSnaps.map((_, index: number) => (
-              <DotButton
-                key={index}
-                onClick={() => onDotButtonClick(index)}
-                className={"embla__dot".concat(
-                  index === selectedIndex ? " embla__dot--selected" : ""
-                )}
-              />
-            ))}
-          </div>
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
+        <CarouselControls
+          onClick={onPrevButtonClick}
+          onDotButtonClick={onDotButtonClick}
+          onNextButtonClick={onNextButtonClick}
+          prevBtnDisabled={prevBtnDisabled}
+          nextBtnDisabled={nextBtnDisabled}
+          scrollSnaps={scrollSnaps}
+          selectedIndex={selectedIndex}
+        />
       </div>
     </section>
   );
